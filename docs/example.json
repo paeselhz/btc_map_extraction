@@ -1,0 +1,59 @@
+{
+    "id": "node:11089175599", 
+    "osm_json": {
+        "type": "node", 
+        "id": 11089175599, 
+        "lat": -30.029384, 
+        "lon": -51.1904138, 
+        "timestamp": "2023-08-04T14:15:50Z", 
+        "version": 1, 
+        "changeset": 139444171, 
+        "user": "Go BTC", 
+        "uid": 19288099, 
+        "tags": {
+            "payment:onchain": "yes", 
+            "check_date:currency:XBT": "2023-08-03", 
+            "addr:street": "Rua Pedro Ivo", 
+            "amenity": "doctors", 
+            "survey:date": "2023-08-03", 
+            "contact:email": "patrickditzel@gmail.com", 
+            "healthcare": "doctor", 
+            "currency:XBT": "yes", 
+            "name": "Consultório Dr. Patrick Ditzel", 
+            "payment:lightning_contactless": "yes", 
+            "addr:housenumber": "410", 
+            "healthcare:speciality": "general", 
+            "operator": "Dr. Patrick Ditzel", 
+            "payment:lightning": "yes", 
+            "check_date": "2023-08-03"
+        }, 
+        "bounds": "", 
+        "nodes": "", 
+        "geometry": "", 
+        "members": ""
+    }, 
+    "tags": {
+        "category": "other", 
+        "issues": [
+            {
+                "description": "Soon to be outdated", 
+                "severity": 100, 
+                "type": "out_of_date_soon"
+            }
+        ], 
+        "areas": [
+            {
+                "id": 173, 
+                "url_alias": "br"
+            }, 
+            {
+                "id": 536, 
+                "url_alias": "porto-alegre-bitcoin"
+            }
+        ], 
+        "icon:android": "medical_services"
+    }, 
+    "created_at": "2023-08-04T14:20:52.711Z", 
+    "updated_at": "2024-05-09T03:36:51.543Z", 
+    "deleted_at": ""
+}

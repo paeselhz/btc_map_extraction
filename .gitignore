@@ -1,0 +1,7 @@
+.DS_Store
+
+shiny_bookmarks/
+
+btc_map_extraction/
+
+__pycache__/
