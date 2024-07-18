@@ -18,7 +18,7 @@ class BTCMapExtraction:
         else:
             raise RuntimeError
         
-        return node_req
+        return node_dict
     
     def request_elements(self):
 
@@ -44,23 +44,29 @@ class BTCMapExtraction:
             'deleted_at': node_dict.get('deleted_at')
         }
 
-        keys_df = pd.DataFrame.from_dict(individual_keys, orient='index')
+        keys_df = pd.DataFrame.from_dict([individual_keys], orient='columns')
 
         osm_json_tags = node_dict.get('osm_json').get('tags')
 
-        tags_df = pd.DataFrame.from_dict(osm_json_tags, orient='index')
+        if osm_json_tags is not None:
 
-        ret_df = pd.concat([keys_df, tags_df])
+            tags_df = pd.DataFrame.from_dict([osm_json_tags], orient='columns')
+
+            tags_df.columns = 'tags_' + tags_df.columns
+        else:
+            tags_df = pd.DataFrame()
+        
+        ret_df = pd.concat([keys_df, tags_df], axis = 1)
+
+        ret_df.dropna(axis=1, inplace=True)
 
         return ret_df
 
-    def all_elements_df(self):
-        elements_dict = self.request_elements()
+    def elements_df(self, list_elements):
 
-        list_dfs = [self.individual_df(x) for x in elements_dict]
+        list_dfs = [self.individual_df(x) for x in list_elements]
 
-        ret_df = pd.concat(list_dfs, axis = 0)
+        ret_df = pd.concat(list_dfs, axis = 0, ignore_index=True)
 
         return ret_df
-
 
