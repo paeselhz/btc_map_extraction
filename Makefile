@@ -4,6 +4,7 @@ all: environment code_style run
 .PHONY: environment
 environment:
 	python3 -m venv btc_map_extraction
+	btc_map_extraction/bin/pip install black isort
 	btc_map_extraction/bin/pip install -r requirements.txt
 
 .PHONY: code_style
@@ -13,7 +14,7 @@ code_style:
 
 .PHONY: data_extraction
 data_extraction:
-	btc_map_extraction/bin/python data_extraction/main.py
+	btc_map_extraction/bin/python main.py
 
 .PHONY: run
 run:
