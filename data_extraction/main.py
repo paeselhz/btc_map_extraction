@@ -1,7 +1,9 @@
 import json
 
+import geopandas as gpd
 import pandas as pd
 import requests
+from shapely.geometry import Point, shape
 
 
 class BTCMapExtraction:
@@ -9,6 +11,21 @@ class BTCMapExtraction:
     def __init__(self):
         self.node_base_url = "https://api.btcmap.org/v2/elements/node:"
         self.elements_base_url = "https://static.btcmap.org/api/v2/elements.json"
+        self.world_map = gpd.read_file(
+            "data/WB_countries_Admin0_10m/WB_countries_Admin0_10m.shp"
+        )
+
+    def get_country(self, lat, lon):
+        try:
+            point = Point(lon, lat)
+            for country in self.world_map.iterrows():
+                if country[1]["geometry"].contains(point):
+                    return country[1][
+                        "WB_NAME"
+                    ]
+        except:
+            return "Country not found"
+        return "Country not found"
 
     def request_node(self, node):
         node_req = requests.get(f"{self.node_base_url}{node}")
@@ -43,6 +60,10 @@ class BTCMapExtraction:
             "updated_at": node_dict.get("updated_at"),
             "deleted_at": node_dict.get("deleted_at"),
         }
+
+        individual_keys["country"] = self.get_country(
+            individual_keys.get("lat"), individual_keys.get("lon")
+        )
 
         keys_df = pd.DataFrame.from_dict([individual_keys], orient="columns")
 
