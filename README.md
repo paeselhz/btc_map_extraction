@@ -6,7 +6,7 @@ This repository is a work in progress to extract data from the [BTC MAP](https:/
 
 This code can be run by cloning the repository and running:
 
-> It takes a while to run and could use with plenty of optimazations!
+> It takes a while to run and could use with plenty of optimazations! Especially after including the geolocation step that looks for the country of each pair of latitude and longitude.
 
 ```{}
 make environment
